@@ -37,6 +37,8 @@
               dark1: "rgb(19, 19, 19)",
               dark2: "rgba(19, 19, 19, 0.7)",
               dark3: "rgba(19, 19, 19, 0.6)",
+              inputbg: "rgba(255, 255, 255, 0.05)",
+              lightwhite: "rgba(255, 255, 255, 0.6)",
             },
           },
         },
@@ -45,6 +47,11 @@
     <style>
       .font-inter {
         font-family: "Inter", sans-serif;
+      }
+      .btn-active {
+        border-radius: 120px;
+        border: 1px solid rgb(14, 122, 129) !important;
+        background-color: rgba(14, 122, 129, 0.2) !important;
       }
     </style>
   </head>
@@ -133,15 +140,17 @@
             the readable content of a page when looking <br />
             at its layout. The point of using Lorem Ipsum is that it has a.
           </p>
-          <button
-            class="btn text-white bg-primary hover:bg-primary1 hover:text-dark2 hover:border-primary lg:w-40"
+          <a href="#best-friend"
+            ><button
+              class="btn text-white bg-primary hover:bg-primary1 hover:text-dark2 hover:border-primary lg:w-40"
+            >
+              View More
+            </button></a
           >
-            View More
-          </button>
           <img src="./images/pet.webp" alt="" />
         </div>
       </section>
-      <section>
+      <section id="best-friend">
         <h1 class="text-5xl font-extrabold text-dark1 text-center">
           Adopt Your Best Friend
         </h1>
@@ -164,14 +173,77 @@
         </div>
       </section>
       <!-- All pets -->
-      <section class="grid grid-cols-4 gap-5">
+      <section class="grid md:grid-cols-3 lg:grid-cols-4 gap-5">
         <div
           id="pets-container"
-          class="col-span-3 grid grid-cols-3 gap-5"
+          class="lg:col-span-3 md:col-span-2 grid lg:grid-cols-3 md:grid-cols-2 gap-5"
         ></div>
-        <div class="grid grid-cols-2 gap-5"></div>
+        <div class="border rounded-lg p-4">
+          <div id="image-container" class="grid grid-cols-2 h-fit gap-5"></div>
+        </div>
       </section>
     </main>
+    <footer class="bg-dark1 text-neutral-content p-10">
+      <div class="container mx-auto footer place-items-center">
+        <nav>
+          <h6 class="pb-6">
+            <div>
+              <i class="fa-solid fa-paw text-primary text-2xl"></i>
+              <a class="text-3xl font-extrabold text-white">Peddy</a>
+            </div>
+          </h6>
+          <a class="link link-hover"
+            >Location: av. Washington 165, NY CA 54003
+          </a>
+          <a class="link link-hover">Phone: +31 85 964 47 25</a>
+          <a class="link link-hover">Email: info@yourdomain.com</a>
+          <a class="link link-hover">Openings hours: 9.00 AM - 5.00 PM</a>
+          <div class="flex gap-3">
+            <img
+              class="w-8 h-8"
+              src="https://img.icons8.com/?size=48&id=uLWV5A9vXIPu&format=png"
+              alt=""
+            />
+            <img
+              class="w-8 h-8"
+              src="https://img.icons8.com/?size=48&id=cMRBi0rI3iwb&format=png"
+              alt=""
+            />
+            <img
+              class="w-8 h-8"
+              src="https://img.icons8.com/?size=48&id=19318&format=png"
+              alt=""
+            />
+            <img
+              class="w-8 h-8"
+              src="https://img.icons8.com/?size=48&id=Xy10Jcu1L2Su&format=png"
+              alt=""
+            />
+          </div>
+        </nav>
+        <nav>
+          <h6 class="pb-6 font-bold text-lg">Useful Links</h6>
+          <a class="link link-hover text-lightwhite">Home</a>
+          <a class="link link-hover text-lightwhite">About us</a>
+          <a class="link link-hover text-lightwhite">Animals</a>
+          <a class="link link-hover text-lightwhite">Foundation</a>
+          <a class="link link-hover text-lightwhite">Contact</a>
+        </nav>
+        <nav>
+          <h6 class="pb-6 font-bold text-lg">Drop a Message</h6>
+          <input
+            class="p-4 rounded-lg bg-inputbg text-lightwhite"
+            type="email"
+            name=""
+            id=""
+            placeholder="Enter your email"
+          />
+          <button class="btn bg-primary text-white border-none w-full mt-2">
+            Subscribe
+          </button>
+        </nav>
+      </div>
+    </footer>
 
     <script src="./js/index.js"></script>
   </body>
