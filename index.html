@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peddy</title>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- tailwind and daisyUI cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "rgb(14, 122, 129)",
+              primary1: "rgba(14, 122, 129, 0.2)",
+              primary2: "rgba(14, 122, 129, 0.1)",
+              dark1: "rgb(19, 19, 19)",
+              dark2: "rgba(19, 19, 19, 0.7)",
+              dark3: "rgba(19, 19, 19, 0.6)",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .font-inter {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="font-inter">
+    <!-- Navbar -->
+
+    <header class="container mx-auto">
+      <nav>
+        <div class="navbar">
+          <div class="navbar-start">
+            <div class="dropdown">
+              <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </div>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              >
+                <li class="text-dark3"><a>Home</a></li>
+                <li class="text-dark3"><a>Shop</a></li>
+                <li class="text-dark3"><a>Contact</a></li>
+              </ul>
+            </div>
+            <div class="btn btn-ghost hover:bg-primary1 hover:border-primary">
+              <i class="fa-solid fa-paw text-primary text-2xl"></i>
+              <a class="text-3xl font-extrabold">Peddy</a>
+            </div>
+          </div>
+          <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+              <li
+                class="text-dark3 hover:bg-primary hover:text-white rounded-lg"
+              >
+                <a>Home</a>
+              </li>
+              <li
+                class="text-dark3 hover:bg-primary hover:text-white rounded-lg"
+              >
+                <a>Shop</a>
+              </li>
+              <li
+                class="text-dark3 hover:bg-primary hover:text-white rounded-lg"
+              >
+                <a>Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div class="navbar-end">
+            <a
+              class="btn btn-ghost text-dark2 rounded-full border border-primary1 hover:bg-primary hover:text-white"
+              ><i class="fa-regular fa-user text-xl"></i
+            ></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Banner -->
+    <main class="container mx-auto my-20">
+      <section>
+        <div class="flex flex-col items-center gap-10">
+          <h3 class="font-bold text-2xl text-dark3 text-center">
+            Bringing Families Together ❤️‍🔥
+          </h3>
+          <h1
+            class="text-center text-3xl lg:text-7xl font-extrabold text-dark1"
+          >
+            Your Path to Adoption <br />
+            Starts Here
+          </h1>
+          <p class="text-center text-dark1">
+            It is a long established fact that a reader will be distracted by
+            the readable content of a page when looking <br />
+            at its layout. The point of using Lorem Ipsum is that it has a.
+          </p>
+          <button
+            class="btn text-white bg-primary hover:bg-primary1 hover:text-dark2 hover:border-primary lg:w-40"
+          >
+            View More
+          </button>
+          <img src="./images/pet.webp" alt="" />
+        </div>
+      </section>
+      <section>
+        <h1 class="text-5xl font-extrabold text-dark1 text-center">
+          Adopt Your Best Friend
+        </h1>
+        <p class="text-center text-dark2 py-6">
+          It is a long established fact that a reader will be distracted by the
+          readable content of a <br />
+          page when looking at its layout. The point of using Lorem Ipsum is
+          that it has a.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
