@@ -55,23 +55,41 @@ const displayPets = (pets) => {
         <h2 class="card-title font-bold text-xl">${items.pet_name}</h2>
         <div class="flex gap-3 items-center text-dark2">
           <i class="fa-solid fa-list"></i>
-          <p>Breed: ${items.breed}</p>
+          <p>${
+            items.breed == null || undefined
+              ? `Breed: Not Available`
+              : `Breed: ${items.breed}`
+          }</p>
         </div>
         <div class="flex gap-3 items-center text-dark2">
           <i class="fa-solid fa-calendar-week"></i>
-          <p>Birth: ${items.date_of_birth}</p>
+          <p>${
+            items.date_of_birth == null || undefined
+              ? `Birth: Not Available`
+              : `Birth: ${items.date_of_birth}`
+          }</p>
         </div>
         <div class="flex gap-3 items-center text-dark2">
           <i class="fa-solid fa-mercury"></i>
-          <p>Gender: ${items.gender}</p>
+          <p>${
+            items.gender == null || undefined
+              ? `Gender: Not Available`
+              : `Gender: ${items.gender}`
+          }</p>
         </div>
         <div class="flex gap-3 items-center text-dark2">
           <i class="fa-solid fa-dollar-sign"></i>
-          <p>Price: ${items.price}$</p>
+          <p>${
+            items.price == null || undefined
+              ? `Price: Not Available`
+              : `Price: ${items.price}$`
+          }</p>
         </div>
         <hr class="my-4" />
         <div class="grid grid-cols-4 gap-5">
-          <button onclick="loadPetsById(${items.petId})" class="btn text-lg text-dark2 bg-white border-primary2 hover:border-primary hover:bg-white">
+          <button onclick="loadPetsById(${
+            items.petId
+          })" class="btn text-lg text-dark2 bg-white border-primary2 hover:border-primary hover:bg-white">
             <i class="fa-regular fa-thumbs-up"></i>
           </button>
           <div class="col-span-3 grid grid-cols-2 gap-5">
@@ -81,6 +99,7 @@ const displayPets = (pets) => {
               Adopt
             </button>
             <button
+              onclick="loadDetails(${items.petId})"
               class="btn font-bold text-primary text-lg bg-white border-primary2 hover:bg-primary hover:text-white"
             >
               Details
@@ -102,20 +121,29 @@ const removeActiveClass = () => {
 };
 
 const loadPetsByCategory = (category) => {
-  fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
-    .then((res) => res.json())
-    .then((data) => {
-      removeActiveClass();
-      const button = document.getElementById(category);
-      button.classList.add("btn-active");
-      displayPets(data.data);
-    });
+  const petContainer = document.getElementById("all-pet-container");
+  petContainer.classList.add("hidden");
+  showSpin();
+  removeActiveClass();
+  const button = document.getElementById(category);
+  button.classList.add("btn-active");
+  setTimeout(() => {
+    hideSpin();
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+      .then((res) => res.json())
+      .then((data) => {
+        petContainer.classList.remove("hidden");
+        displayPets(data.data);
+      });
+  }, 2000);
 };
 
 const loadPetsById = (id) => {
   fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
     .then((res) => res.json())
-    .then((data) => displayPetImage(data.petData.image));
+    .then((data) => {
+      displayPetImage(data.petData.image);
+    });
 };
 
 const displayPetImage = (image) => {
@@ -127,5 +155,68 @@ const displayPetImage = (image) => {
   imageContainer.appendChild(img);
 };
 
+const loadDetails = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/peddy/pet/${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      displayDetails(data.petData);
+    });
+};
+
+const displayDetails = (details) => {
+  const modalContainer = document.getElementById("modal-container");
+  modalContainer.innerHTML = `
+  <img class="w-full object-cover rounded-xl" src=${details.image}/>
+  <h1 class="font-bold text-2xl text-dar1 mt-4">${details.pet_name}</h1>
+  <div class="flex gap-8 my-5">
+    <div>
+        <div class="flex gap-3 items-center text-dark2">
+          <i class="fa-solid fa-list"></i>
+          <p>Breed: ${details.breed}</p>
+        </div>
+        <div class="flex gap-3 items-center text-dark2">
+          <i class="fa-solid fa-mercury"></i>
+          <p>Gender: ${details.gender}</p>
+        </div>
+        <div class="flex gap-3 items-center text-dark2">
+          <i class="fa-solid fa-mercury"></i>
+          <p>Vaccinated status: ${details.vaccinated_status}</p>
+        </div>
+    </div>
+    <div>
+        <div class="flex gap-3 items-center text-dark2">
+          <i class="fa-solid fa-calendar-week"></i>
+          <p>Birth: ${details.date_of_birth}</p>
+        </div>
+        <div class="flex gap-3 items-center text-dark2">
+          <i class="fa-solid fa-dollar-sign"></i>
+          <p>Price: ${details.price}$</p>
+        </div>
+    </div>
+  </div>
+  <div>
+    <h2 class="font-semibold text-dark1 mb-4">Details Information</h2>
+    <p class="text-dar2">${details.pet_details}</p>
+  </div>
+  `;
+  document.getElementById("my-modal").showModal();
+};
+
+const showSpin = () => {
+  const spinContainer = document.getElementById("loading-spin");
+  spinContainer.classList.remove("hidden");
+  spinContainer.innerHTML = `
+  <span class="loading loading-bars loading-md"></span>
+  `;
+};
+showSpin();
+
+const hideSpin = () => {
+  const spinContainer = document.getElementById("loading-spin");
+  spinContainer.classList.add("hidden");
+};
+
+setTimeout(hideSpin, 2000);
+
 loadCategories();
-loadPets();
+setTimeout(loadPets, 2000);
