@@ -94,6 +94,7 @@ const displayPets = (pets) => {
           </button>
           <div class="col-span-3 grid grid-cols-2 gap-5">
             <button
+              onclick="adoptPets()"
               class="btn font-bold text-primary text-lg bg-white border-primary2 hover:text-white hover:bg-primary"
             >
               Adopt
@@ -153,6 +154,27 @@ const displayPetImage = (image) => {
     <img class="rounded-lg h-36 w-full" object-cover" src=${image}/>
   `;
   imageContainer.appendChild(img);
+};
+
+const adoptPets = () => {
+  const modalContainer = document.getElementById("modal-container2");
+  modalContainer.innerHTML = `
+  <img src="https://img.icons8.com/?size=80&id=ww1tIlABtSe9&format=png"/>
+  <h1 class ="text-dark1 font-bold text-2xl">Congrats</h1>
+  <p class="text-dar1 py-3">Adoption Process is Starting For Your Pet</p>
+  <span id="countdown" class="font-bold text-dark1 text-xl">3</span>
+  `;
+  const countdown = document.getElementById("countdown");
+  let second = 2;
+  const intervalId = setInterval(() => {
+    countdown.innerText = second;
+    second--;
+    if (second < 0) {
+      clearInterval(intervalId);
+      document.getElementById("btn-modal2").click();
+    }
+  }, 1000);
+  document.getElementById("my-modal2").showModal();
 };
 
 const loadDetails = (id) => {
