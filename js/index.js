@@ -15,6 +15,24 @@ const displayCategories = (categories) => {
   });
 };
 
+const loadPetsForSort = () => {
+  const petContainer = document.getElementById("all-pet-container");
+  petContainer.classList.add("hidden");
+  showSpin();
+  setTimeout(() => {
+    hideSpin();
+    fetch("https://openapi.programming-hero.com/api/peddy/pets")
+      .then((res) => res.json())
+      .then((data) => sortByPrice(data.pets));
+    petContainer.classList.remove("hidden");
+  }, 2000);
+};
+
+const sortByPrice = (pet) => {
+  pet.sort((a, b) => b.price - a.price);
+  displayPets(pet);
+};
+
 const loadPets = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/pets")
     .then((res) => res.json())
