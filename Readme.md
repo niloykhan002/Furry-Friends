@@ -1,4 +1,4 @@
-# Peddy - Adopt Your Pet
+# Furry Friends - Adopt Your Pet
 
 This website is focused on pet adoption. Users can find information about adoptable pets and can book pet for adoption.
 
@@ -18,7 +18,3 @@ This website is focused on pet adoption. Users can find information about adopta
 - Template Literals
 - Promises
 - For/of
-
-### Live link:
-
-[https://peddy-adopt-your-pet.netlify.app](https://peddy-adopt-your-pet.netlify.app)
